@@ -31,7 +31,8 @@ builder.Services.AddInfrastructure(builder.Configuration)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("development", policy =>
-        policy.AllowAnyOrigin()
+        policy
+        .WithOrigins("http://localhost:3000")
         .AllowAnyMethod()
         .AllowAnyHeader()
     );

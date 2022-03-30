@@ -24,7 +24,8 @@ namespace pmBudget.API.Controllers
         [HttpGet]
         public async Task<IActionResult> FindAsync()
         {
-            var transactions = await _transactionsApplicationService.FindAsync(t => t.UserId == _loggedInUserService.Id);
+            //var transactions = await _transactionsApplicationService.FindAsync(t => t.UserId == _loggedInUserService.Id);
+            var transactions = await _transactionsApplicationService.FindAsync();
             var response = Response<IEnumerable<TransactionOutputModel>>.Ok(data: transactions);
 
             return Ok(response);
