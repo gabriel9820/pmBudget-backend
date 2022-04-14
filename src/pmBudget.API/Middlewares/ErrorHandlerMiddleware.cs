@@ -51,7 +51,11 @@ namespace pmBudget.API.Middlewares
                         break;
                 }
 
-                var payload = JsonSerializer.Serialize(responseModel);
+                var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+                {
+                    WriteIndented = true
+                };
+                var payload = JsonSerializer.Serialize(responseModel, options);
 
                 await response.WriteAsync(payload);
             }
