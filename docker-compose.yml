@@ -17,13 +17,12 @@ services:
   
   postgres:
     image: postgres
-    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Master@2022
       POSTGRES_DB: pmBudget
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
@@ -31,12 +30,11 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: 'admin@admin.com.br'
       PGADMIN_DEFAULT_PASSWORD: 'Admin@2021!'
     ports:
-      - 16543:80
+      - 16544:80
     depends_on:
       - postgres
     networks:
