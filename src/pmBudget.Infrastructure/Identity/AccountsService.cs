@@ -72,20 +72,9 @@ namespace pmBudget.Infrastructure.Identity
         private async Task<LoginOutputModel> GenerateJwt(string username)
         {
             var user = await _userManager.FindByNameAsync(username);
-            //var roles = await _userManager.GetRolesAsync(usuario);
-            var claims = await _userManager.GetClaimsAsync(user);
 
             var claimsIdentity = new ClaimsIdentity();
-
-            /*foreach (var role in roles)
-            {
-                claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, role));
-            }*/
-            claimsIdentity.AddClaims(claims);
             claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-
-            // TODO: REMOVER (PROVISÓRIO)
-            //claimsIdentity.AddClaim(new Claim("academiaId", "1", ClaimValueTypes.Integer32));
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
@@ -109,12 +98,6 @@ namespace pmBudget.Infrastructure.Identity
                     Name = user.Name,
                     Email = user.Email,
                     UserName = user.UserName,
-                    /*Claims = claims.Select(c => new ClaimOutputModel
-                    {
-                        Tipo = c.Type,
-                        Valor = c.Value
-                    }),
-                    Roles = roles*/
                 }
             };
         }

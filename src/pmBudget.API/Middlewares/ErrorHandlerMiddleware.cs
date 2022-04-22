@@ -39,10 +39,6 @@ namespace pmBudget.API.Middlewares
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         responseModel.Errors = ex.Errors;
                         break;
-                    /*case DomainException ex:
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        responseModel.Erros = ex.Erros;
-                        break;*/
                     case EntityNotFoundException ex:
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
