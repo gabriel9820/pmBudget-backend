@@ -8,6 +8,7 @@ namespace pmBudget.Domain.Entities
 
         /* Relations */
         public ICollection<Transaction> Transactions { get; set; }
+        public ICollection<Category> Categories { get; set; }
 
         public ApplicationUser() { }
     }

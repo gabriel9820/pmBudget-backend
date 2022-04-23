@@ -14,6 +14,10 @@ namespace pmBudget.Infrastructure.Configurations
             builder.Property(b => b.Id)
                 .UseIdentityColumn();
 
+            builder.Property(b => b.Date)
+                .HasDefaultValueSql("now()")
+                .IsRequired();
+
             builder.Property(b => b.Title)
                 .IsRequired()
                 .HasMaxLength(200);

@@ -41,8 +41,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-/* Provisório para funcionar o Swagger no DOCKER */
-if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
+if (app.Environment.IsDevelopment())
 {
     app.UseCors("development");
     app.UseSwagger();

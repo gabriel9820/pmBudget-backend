@@ -12,6 +12,10 @@ namespace pmBudget.Application.AutoMapper
             CreateMap<TransactionInputModel, Transaction>()
                 .AfterMap<SetUserIdAction<TransactionInputModel>>();
             CreateMap<Transaction, TransactionOutputModel>();
+
+            CreateMap<CategoryInputModel, Category>()
+                .AfterMap<SetUserIdAction<CategoryInputModel>>();
+            CreateMap<Category, CategoryOutputModel>();
         }
     }
 }

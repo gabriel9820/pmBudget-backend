@@ -6,6 +6,9 @@ namespace pmBudget.Application.DTOs.InputModels
     public class TransactionInputModel
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        public DateTime Date { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [MaxLength(200, ErrorMessage = "O campo {0} deve conter no máximo {1} caracteres")]
         public string Title { get; set; }
 

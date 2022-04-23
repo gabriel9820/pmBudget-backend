@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using pmBudget.Infrastructure.Context;
@@ -11,9 +12,10 @@ using pmBudget.Infrastructure.Context;
 namespace pmBudget.Infrastructure.Migrations
 {
     [DbContext(typeof(pmBudgetContext))]
-    partial class pmBudgetContextModelSnapshot : ModelSnapshot
+    [Migration("20220423011502_AddTransactionDate")]
+    partial class AddTransactionDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,30 +228,6 @@ namespace pmBudget.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("pmBudget.Domain.Entities.Category", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Categories", (string)null);
-                });
-
             modelBuilder.Entity("pmBudget.Domain.Entities.Transaction", b =>
                 {
                     b.Property<long>("Id")
@@ -341,17 +319,6 @@ namespace pmBudget.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("pmBudget.Domain.Entities.Category", b =>
-                {
-                    b.HasOne("pmBudget.Domain.Entities.ApplicationUser", "User")
-                        .WithMany("Categories")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("pmBudget.Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("pmBudget.Domain.Entities.ApplicationUser", "User")
@@ -365,8 +332,6 @@ namespace pmBudget.Infrastructure.Migrations
 
             modelBuilder.Entity("pmBudget.Domain.Entities.ApplicationUser", b =>
                 {
-                    b.Navigation("Categories");
-
                     b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618

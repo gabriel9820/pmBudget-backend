@@ -60,6 +60,7 @@ namespace pmBudget.IoC
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ITransactionsRepository, TransactionsRepository>();
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 
             return services;
         }
@@ -73,6 +74,7 @@ namespace pmBudget.IoC
         {
             services.AddScoped<IAccountsService, AccountsService>();
             services.AddScoped<ITransactionsApplicationService, TransactionsApplicationService>();
+            services.AddScoped<ICategoriesApplicationService, CategoriesApplicationService>();
 
             return services;
         }
