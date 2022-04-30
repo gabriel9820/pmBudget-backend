@@ -6,12 +6,15 @@ services:
   pmbudgetapi:
     image: pmbudgetapi
     build:
-      context: .
-      dockerfile: src/pmBudget.API/Dockerfile
+      context: ./src
+      dockerfile: ./pmBudget.API/Dockerfile
     ports:
+      - 7047:7047
       - 5047:5047
     depends_on:
       - postgres
+    volumes:
+      - ./src:/app
     networks:
       - pmbudget-network
   
