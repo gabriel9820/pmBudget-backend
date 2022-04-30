@@ -1,7 +1,12 @@
-# GENERATE / APLLY MIGRATIONS
+## :wrench: Migrations
 
-cd src/
-cd pmBudget.Infrastructure/
+```bash
+$ cd src/
+$ cd pmBudget.Infrastructure/
 
-dotnet ef --startup-project ../pmBudget.API/ migrations add MigrationName
-dotnet ef --startup-project ../pmBudget.API/ database update
+# Generate Migration
+$ dotnet ef --startup-project ../pmBudget.API/ migrations add [name]
+
+# Apply Migration
+$ dotnet ef --startup-project ../pmBudget.API/ database update
+```
