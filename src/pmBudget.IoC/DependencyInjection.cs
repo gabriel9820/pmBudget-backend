@@ -21,7 +21,7 @@ namespace pmBudget.IoC
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<pmBudgetContext>(
-                options => options.UseNpgsql(config.GetConnectionString("LocalConnection")));
+                options => options.UseNpgsql(config.GetConnectionString("Docker")));
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()

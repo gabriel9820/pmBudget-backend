@@ -18,6 +18,10 @@ namespace pmBudget.Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(200);
 
+            builder.Property(b => b.IsActive)
+                .IsRequired()
+                .HasDefaultValue(true);
+
             builder.HasOne(t => t.User)
                 .WithMany(u => u.Categories)
                 .HasForeignKey(t => t.UserId);
