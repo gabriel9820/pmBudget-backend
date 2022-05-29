@@ -15,6 +15,16 @@ services:
       - postgres
     volumes:
       - ./src:/app
+      - /app/pmBudget.API/bin
+      - /app/pmBudget.API/obj
+      - /app/pmBudget.Application/bin
+      - /app/pmBudget.Application/obj
+      - /app/pmBudget.Domain/bin
+      - /app/pmBudget.Domain/obj
+      - /app/pmBudget.Infrastructure/bin
+      - /app/pmBudget.Infrastructure/obj
+      - /app/pmBudget.IoC/bin
+      - /app/pmBudget.IoC/obj
     networks:
       - pmbudget-network
   
@@ -25,7 +35,7 @@ services:
       POSTGRES_PASSWORD: Master@2022
       POSTGRES_DB: pmBudget
     ports:
-      - 5433:5432
+      - 5434:5432
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
