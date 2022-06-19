@@ -30,6 +30,15 @@ namespace pmBudget.API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("summary")]
+        public async Task<IActionResult> GetSummaryAsync()
+        {
+            var summary = await _transactionsApplicationService.GetSummaryAsync(_loggedInUserService.Id);
+            var response = Response<SummaryOutputModel>.Ok(data: summary);
+
+            return Ok(response);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(long id)
         {

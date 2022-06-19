@@ -4,5 +4,8 @@ using pmBudget.Domain.Entities;
 
 namespace pmBudget.Application.Interfaces
 {
-    public interface ITransactionsApplicationService : IBaseApplicationService<Transaction, TransactionInputModel, TransactionOutputModel> { }
+    public interface ITransactionsApplicationService : IBaseApplicationService<Transaction, TransactionInputModel, TransactionOutputModel>
+    {
+        Task<SummaryOutputModel> GetSummaryAsync(string userId);
+    }
 }
