@@ -28,13 +28,15 @@ namespace pmBudget.Infrastructure.Configurations
             builder.Property(b => b.Value)
                 .IsRequired();
 
-            builder.Property(b => b.Category)
+            builder.HasOne(t => t.Category)
+                .WithMany(c => c.Transactions)
+                .HasForeignKey(t => t.CategoryId)
                 .IsRequired()
-                .HasMaxLength(200);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(t => t.User)
-            .WithMany(u => u.Transactions)
-            .HasForeignKey(t => t.UserId);
+                .WithMany(u => u.Transactions)
+                .HasForeignKey(t => t.UserId);
         }
     }
 }

@@ -20,7 +20,6 @@ namespace pmBudget.Application.DTOs.InputModels
         public double Value { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [MaxLength(200, ErrorMessage = "O campo {0} deve conter no máximo {1} caracteres")]
-        public string Category { get; set; }
+        public long CategoryId { get; set; }
     }
 }

@@ -13,18 +13,16 @@ namespace pmBudget.API.Controllers
     public class TransactionsController : ControllerBase
     {
         private readonly ITransactionsApplicationService _transactionsApplicationService;
-        private readonly ILoggedInUserService _loggedInUserService;
 
-        public TransactionsController(ITransactionsApplicationService transactionsApplicationService, ILoggedInUserService loggedInUserService)
+        public TransactionsController(ITransactionsApplicationService transactionsApplicationService)
         {
             _transactionsApplicationService = transactionsApplicationService;
-            _loggedInUserService = loggedInUserService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> FindAsync()
+        public async Task<IActionResult> GetAllAsync()
         {
-            var transactions = await _transactionsApplicationService.FindAsync(t => t.UserId == _loggedInUserService.Id);
+            var transactions = await _transactionsApplicationService.GetAllAsync();
             var response = Response<IEnumerable<TransactionOutputModel>>.Ok(data: transactions);
 
             return Ok(response);
@@ -33,7 +31,7 @@ namespace pmBudget.API.Controllers
         [HttpGet("summary")]
         public async Task<IActionResult> GetSummaryAsync()
         {
-            var summary = await _transactionsApplicationService.GetSummaryAsync(_loggedInUserService.Id);
+            var summary = await _transactionsApplicationService.GetSummaryAsync();
             var response = Response<SummaryOutputModel>.Ok(data: summary);
 
             return Ok(response);

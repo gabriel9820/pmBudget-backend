@@ -8,7 +8,7 @@ namespace pmBudget.Domain.Interfaces.Repositories
         TEntity Create(TEntity entity);
         TEntity Update(TEntity entity);
         void Delete(TEntity entity);
-        Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null);
+        Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[]? includes);
         Task<TEntity> GetByIdAsync(long id);
     }
 }

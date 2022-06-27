@@ -9,6 +9,6 @@ namespace pmBudget.Application.DTOs.OutputModels
         public string Title { get; set; }
         public TransactionType Type { get; set; }
         public double Value { get; set; }
-        public string Category { get; set; }
+        public CategoryOutputModel Category { get; set; }
     }
 }

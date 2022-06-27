@@ -34,13 +34,21 @@ namespace pmBudget.Infrastructure.Repositories
             _context.Set<TEntity>().Remove(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null)
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[]? includes)
         {
             var query = _context.Set<TEntity>().AsNoTracking().AsQueryable();
 
             if (conditions != null)
             {
                 query = query.Where(conditions);
+            }
+
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
             }
 
             if (skip != null && skip.HasValue)

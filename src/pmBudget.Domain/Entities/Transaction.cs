@@ -8,8 +8,11 @@ namespace pmBudget.Domain.Entities
         public DateTime Date { get; set; }
         public string Title { get; set; }
         public TransactionType Type { get; set; }
+        public long CategoryId { get; set; }
         public double Value { get; set; }
-        public string Category { get; set; }
+
+        /* Relations */
+        public Category Category { get; set; }
 
         public Transaction() { }
     }

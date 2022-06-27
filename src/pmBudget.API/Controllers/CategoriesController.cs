@@ -13,18 +13,16 @@ namespace pmBudget.API.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoriesApplicationService _categoriesApplicationService;
-        private readonly ILoggedInUserService _loggedInUserService;
 
-        public CategoriesController(ICategoriesApplicationService categoriesApplicationService, ILoggedInUserService loggedInUserService)
+        public CategoriesController(ICategoriesApplicationService categoriesApplicationService)
         {
             _categoriesApplicationService = categoriesApplicationService;
-            _loggedInUserService = loggedInUserService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> FindAsync()
+        public async Task<IActionResult> GetAllAsync()
         {
-            var categories = await _categoriesApplicationService.FindAsync(t => t.UserId == _loggedInUserService.Id);
+            var categories = await _categoriesApplicationService.GetAllAsync();
             var response = Response<IEnumerable<CategoryOutputModel>>.Ok(data: categories);
 
             return Ok(response);

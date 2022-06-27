@@ -61,9 +61,9 @@ namespace pmBudget.Application.Services
             await _unitOfWork.Commit();
         }
 
-        public async Task<IEnumerable<TOutputModel>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null)
+        public async Task<IEnumerable<TOutputModel>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[]? includes)
         {
-            var entities = await _baseRepository.FindAsync(conditions, skip, take);
+            var entities = await _baseRepository.FindAsync(conditions, skip, take, includes);
 
             return _mapper.Map<IEnumerable<TOutputModel>>(entities);
         }

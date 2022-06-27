@@ -6,6 +6,7 @@ namespace pmBudget.Application.Interfaces
 {
     public interface ITransactionsApplicationService : IBaseApplicationService<Transaction, TransactionInputModel, TransactionOutputModel>
     {
-        Task<SummaryOutputModel> GetSummaryAsync(string userId);
+        Task<IEnumerable<TransactionOutputModel>> GetAllAsync();
+        Task<SummaryOutputModel> GetSummaryAsync();
     }
 }

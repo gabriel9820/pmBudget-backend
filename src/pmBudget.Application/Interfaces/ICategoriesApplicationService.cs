@@ -4,5 +4,8 @@ using pmBudget.Domain.Entities;
 
 namespace pmBudget.Application.Interfaces
 {
-    public interface ICategoriesApplicationService : IBaseApplicationService<Category, CategoryInputModel, CategoryOutputModel> { }
+    public interface ICategoriesApplicationService : IBaseApplicationService<Category, CategoryInputModel, CategoryOutputModel>
+    {
+        Task<IEnumerable<CategoryOutputModel>> GetAllAsync();
+    }
 }

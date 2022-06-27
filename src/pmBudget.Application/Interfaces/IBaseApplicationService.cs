@@ -11,7 +11,7 @@ namespace pmBudget.Application.Interfaces
         Task<TOutputModel> CreateAsync(TInputModel inputModel);
         Task<TOutputModel> UpdateAsync(long id, TInputModel inputModel);
         Task DeleteAsync(long id);
-        Task<IEnumerable<TOutputModel>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null);
+        Task<IEnumerable<TOutputModel>> FindAsync(Expression<Func<TEntity, bool>>? conditions = null, int? skip = null, int? take = null, params Expression<Func<TEntity, object>>[]? includes);
         Task<TOutputModel> GetByIdAsync(long id);
     }
 }

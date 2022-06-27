@@ -7,6 +7,9 @@ namespace pmBudget.Domain.Entities
         public string Name { get; set; }
         public bool? IsActive { get; set; }
 
+        /* Relations */
+        public ICollection<Transaction> Transactions { get; set; }
+
         public Category() { }
     }
 }
